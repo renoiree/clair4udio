@@ -44,8 +44,14 @@ header {
     padding: 20px 0;
 }
 
-.logo img {
+.logohead img {
     height: 40px;      /* ubah sesuai selera */
+    width: auto;
+    display: block;
+}
+
+.logofoot img {
+    height: 70px;      /* ubah sesuai selera */
     width: auto;
     display: block;
 }

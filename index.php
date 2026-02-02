@@ -129,9 +129,9 @@ $products = getAllProducts();
             <div class="contact-info">
                 <h3>Informasi Kontak</h3>
                 <ul class="contact-details">
-                    <li>📧 info@clair4udio.com</li>
-                    <li>📞 +62 812 3456 789</li>
-                    <li>📍 Jl. Audio No. 123, Bekasi</li>
+                    <li>📧 clair4udio@gmail.com</li>
+                    <li>📞 +62 877 8633 1248</li>
+                    <li>📍 Jl. Cikunir Raya Jl. H. Abas, RT.001/RW.002,<br>Jakamulya, Kec. Bekasi Sel., Kota Bks, Jawa Barat 17146</li>
                     <li>🕒 Senin - Jumat: 09:00 - 17:00</li>
                 </ul>
             </div>

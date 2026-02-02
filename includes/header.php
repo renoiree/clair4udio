@@ -16,7 +16,7 @@ session_start();
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="index.php" class="logo">
+                <a href="index.php" class="logohead">
                    <img src="images/klerlowres.png" alt="klerdio logo">
                 </a>
                 <ul class="nav-links">

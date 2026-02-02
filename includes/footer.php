@@ -3,7 +3,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>clair4UDIO</h3>
+                    <a href="index.php" class="logofoot">
+                        <img src="images/klerlowres.png" alt="klerdio logo"><br>
+                    </a>
                     <p>Menyediakan perangkat audio berkualitas untuk berbagai kebutuhan personal maupun profesional.</p>
                 </div>
             
@@ -19,15 +21,15 @@
                 <div class="footer-column">
                     <h3>Kontak</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:info@beatsid.com">info@clair4udio.com</a></li>
-                        <li><a href="tel:+628123456789">+62 812 3456 789</a></li>
+                        <li><a href="mailto:clair4udio@gmail.com">clair4udio@gmail.com</a></li>
+                        <li><a href="tel:+6287786331248">+62 877 8633 1248</a></li>
                         <li><a href="#">Instagram</a></li>
-                        <li><a href="#">fesnuk</a></li>
+                        <li><a href="#">Facebook</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 DRDR. All rights reserved.</p>
+                <p>&copy; 2026 PT. DRDR Solusindo. All rights reserved.</p>
             </div>
         </div>
     <script src="js/script.js"></script>
