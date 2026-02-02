@@ -4,7 +4,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>clair4UDIO</h3>
-                    <p>Menyediakan perangkat audio berkualitas untuk berbagai kebutuhan audio profesional dan personal.</p>
+                    <p>Menyediakan perangkat audio berkualitas untuk berbagai kebutuhan personal maupun profesional.</p>
                 </div>
             
                 <div class="footer-column">
@@ -22,7 +22,7 @@
                         <li><a href="mailto:info@beatsid.com">info@clair4udio.com</a></li>
                         <li><a href="tel:+628123456789">+62 812 3456 789</a></li>
                         <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Shopee</a></li>
+                        <li><a href="#">fesnuk</a></li>
                     </ul>
                 </div>
             </div>
@@ -30,8 +30,6 @@
                 <p>&copy; 2025 DRDR. All rights reserved.</p>
             </div>
         </div>
-    </footer>
-
     <script src="js/script.js"></script>
 </body>
 </html>

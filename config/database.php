@@ -1,9 +1,19 @@
 <?php
 // Konfigurasi Database
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'clair4udio');
+if ($_SERVER['HTTP_HOST'] === 'clair4udio.test') {
+    // LOCAL
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+    define('DB_NAME', 'clair4udio');
+} else {
+    // PRODUCTION
+    define('DB_HOST', '');
+    define('DB_USER', '');
+    define('DB_PASS', '');
+    define('DB_NAME', '');
+}
+
 
 // Koneksi ke database
 function getDBConnection() {
@@ -20,6 +30,14 @@ function getDBConnection() {
 function getAllProducts() {
     $pdo = getDBConnection();
     $stmt = $pdo->prepare("SELECT * FROM products WHERE status = 'active' ORDER BY created_at DESC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Fungsi untuk mendapatkan semua produk dengan kategori (NEW)
+function getAllProductsWithCategory() {
+    $pdo = getDBConnection();
+    $stmt = $pdo->prepare("SELECT *, category FROM products WHERE status = 'active' ORDER BY created_at DESC");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

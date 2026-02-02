@@ -23,7 +23,7 @@ body {
 
 /* Header */
 header {
-    background-color: var(--white);
+    background-color: var(--accent);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -44,11 +44,10 @@ header {
     padding: 20px 0;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--black);
-    text-decoration: none;
+.logo img {
+    height: 40px;      /* ubah sesuai selera */
+    width: auto;
+    display: block;
 }
 
 .nav-links {
@@ -62,7 +61,7 @@ header {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--dark-gray);
+    color: var(--white);
     font-weight: 500;
     transition: color 0.3s;
 }
@@ -108,14 +107,6 @@ header {
     background-color: var(--accent);
 }
 
-.btn-shopee {
-    background-color: #ee4d2d;
-}
-
-.btn-shopee:hover {
-    background-color: #d73211;
-}
-
 /* Products Section */
 .products {
     padding: 80px 0;
@@ -136,11 +127,16 @@ header {
 }
 
 .product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
     background-color: var(--white);
     border-radius: 8px;
     overflow: hidden;
+
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
@@ -157,6 +153,9 @@ header {
 
 .product-info {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .product-name {
@@ -178,6 +177,10 @@ header {
     color: var(--dark-gray);
     margin-bottom: 15px;
     line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* About Section */
@@ -318,6 +321,134 @@ footer {
     }
     
     .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        align-items: stretch; /* IMPORTANT */
     }
+}
+
+/* Category Filter */
+.category-filter-section {
+    padding: 40px 0 20px;
+}
+
+.cat-btn {
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    padding: 8px 20px;
+}
+
+.cat-btn.active {
+    background-color: #333 !important;
+    color: white !important;
+    border-color: #333 !important;
+}
+
+/* Category Badge on Product Card */
+.category-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* E-commerce Buttons */
+.ecommerce-buttons {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-ecom {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-ecom:hover {
+    transform: translateY(-2px);
+}
+
+.btn-shopee {
+    background-color: #FF5722;
+    color: white;
+    border: none;
+}
+
+.btn-shopee:hover {
+    background-color: #e64a19;
+    color: white;
+}
+
+.btn-tokped {
+    background-color: #42B549;
+    color: white;
+    border: none;
+}
+
+.btn-tokped:hover {
+    background-color: #369e3d;
+    color: white;
+}
+
+.btn-tiktok {
+    background-color: #000000;
+    color: white;
+    border: none;
+}
+
+.btn-tiktok:hover {
+    background-color: #333333;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .category-filter {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .cat-btn {
+        margin: 5px;
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .ecommerce-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-ecom {
+        width: 100%;
+    }
+}
+
+/* Logo-only button version (if you want just icons) */
+.btn-ecom.logo-only {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.btn-ecom.logo-only i {
+    margin: 0;
+    font-size: 1.2rem;
 }

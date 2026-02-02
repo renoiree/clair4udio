@@ -60,4 +60,86 @@ document.addEventListener('DOMContentLoaded', function() {
             contactForm.reset();
         });
     }
+    
+    // ====== CATEGORY FILTERING FUNCTIONALITY (NEW CODE) ======
+    
+    // Category Filtering
+    const categoryButtons = document.querySelectorAll('.cat-btn');
+    const productItems = document.querySelectorAll('.product-item');
+    
+    // Only run if category buttons exist (for backwards compatibility)
+    if (categoryButtons.length > 0) {
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.remove('btn-dark');
+                    btn.classList.add('btn-outline-dark');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                this.classList.add('btn-dark');
+                this.classList.remove('btn-outline-dark');
+                
+                const selectedCategory = this.getAttribute('data-category');
+                
+                // Filter products
+                productItems.forEach(item => {
+                    if (selectedCategory === 'all') {
+                        item.style.display = 'block';
+                        // Trigger animation
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else if (item.getAttribute('data-category') === selectedCategory) {
+                        item.style.display = 'block';
+                        // Trigger animation
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Update product count display
+                updateProductCount(selectedCategory);
+            });
+        });
+        
+        // Function to update product count
+        function updateProductCount(category) {
+            const visibleProducts = category === 'all' 
+                ? productItems.length 
+                : document.querySelectorAll(`.product-item[data-category="${category}"]`).length;
+            
+            // Optional: Update a counter element if you add one
+            const counterElement = document.getElementById('product-count');
+            if (counterElement) {
+                counterElement.textContent = `${visibleProducts} produk ditemukan`;
+            }
+        }
+        
+        // Add CSS for fade animation for category filtering
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .product-item {
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize product count
+        updateProductCount('all');
+    }
+    
+    // ====== END OF NEW CATEGORY FILTERING CODE ======
 });

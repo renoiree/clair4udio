@@ -2,7 +2,7 @@
 // Include konfigurasi database
 require_once 'config/database.php';
 
-// Ambil data produk dari database
+// Ambil data produk dari database dengan kategori
 $products = getAllProducts();
 ?>
 
@@ -11,40 +11,96 @@ $products = getAllProducts();
 <!-- Hero Section -->
 <section class="hero" id="home">
     <div class="container">
-        <h1>Tempat Per-Audio-an Terbaik</h1>
-        <p>Temukan berbagai macam In-Ear Monitor & Digital Audio Converter Terbaik. <br>Orang Awam Hingga Audiophile dapat merasakan kenikmatannya.</br></p>
+        <h1>Tempat Perangkat Audio Terbaik</h1>
+        <p>Temukan Berbagai Macam Perangkat Audio Terbaik. 
+        <br>Orang Awam Hingga Audiophile Dapat Merasakan Kenikmatannya.</br></p>
         <a href="#products" class="btn">Lihat Produk</a>
+    </div>
+</section>
+
+<!-- Category Filter Section -->
+<section class="category-filter-section">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Produk Audio Kami</h2>
+        <div class="category-filter text-center mb-5">
+            <button class="btn btn-outline-dark mx-2 mb-2 cat-btn active" data-category="all">Semua Produk</button>
+            <button class="btn btn-outline-dark mx-2 mb-2 cat-btn" data-category="IEM">IEM</button>
+            <button class="btn btn-outline-dark mx-2 mb-2 cat-btn" data-category="DAC">DAC</button>
+            <button class="btn btn-outline-dark mx-2 mb-2 cat-btn" data-category="Headphone">Headphone</button>
+            <button class="btn btn-outline-dark mx-2 mb-2 cat-btn" data-category="Amplifier">Amplifier</button>
+        </div>
     </div>
 </section>
 
 <!-- Products Section -->
 <section class="products" id="products">
     <div class="container">
-        <h2 class="section-title">In-Ear Monitor</h2>
-        <div class="product-grid">
-            <?php if (!empty($products)): ?>
-                <?php foreach ($products as $product): ?>
-                    <div class="product-card">
-                        <?php
-                        $image_url = $product['image_url'];
-                        $full_path = $_SERVER['DOCUMENT_ROOT'] . '/beatsID/' . $image_url;
-                        ?>
-                        <img src="<?php echo htmlspecialchars($image_url); ?>" 
-                            alt="<?php echo htmlspecialchars($product['name']); ?>" 
-                            class="product-image"
-                            onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/cccccc/333333?text=Image+Error'">
-                        <div class="product-info">
-                            <h3 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h3>
-                            <p class="product-price">Rp <?php echo number_format($product['price'], 0, ',', '.'); ?></p>
-                            <p class="product-description"><?php echo htmlspecialchars($product['description']); ?></p>
-                            <a href="<?php echo htmlspecialchars($product['shopee_url']); ?>" 
-                            target="_blank" 
-                            class="btn btn-shopee">Beli di Shopee</a>
-                        </div>
+        <h2 class="section-title text-center">Katalog Produk</h2>
+        <div class="product-grid" id="product-container">
+            <?php 
+            if (!empty($products)):
+                foreach($products as $product):
+                    // Determine badge color based on category
+                    $badge_class = "badge-secondary";
+                    switch($product['category']) {
+                        case 'IEM': $badge_class = "badge-primary"; break;
+                        case 'DAC': $badge_class = "badge-success"; break;
+                        case 'Headphone': $badge_class = "badge-warning"; break;
+                        case 'Amplifier': $badge_class = "badge-danger"; break;
+                        default: $badge_class = "badge-secondary";
+                    }
+            ?>
+            <div class="product-card product-item" data-category="<?php echo htmlspecialchars($product['category'] ?? 'Other'); ?>">
+                <!-- Category Badge -->
+                <span class="category-badge <?php echo $badge_class; ?>">
+                    <?php echo htmlspecialchars($product['category'] ?? 'Other'); ?>
+                </span>
+                
+                <?php
+                $image_url = $product['image_url'];
+                ?>
+                <img src="<?php echo htmlspecialchars($image_url); ?>" 
+                    alt="<?php echo htmlspecialchars($product['name']); ?>" 
+                    class="product-image"
+                    onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/cccccc/333333?text=Image+Error'">
+                <div class="product-info">
+                    <h3 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h3>
+                    <p class="product-price">Rp <?php echo number_format($product['price'], 0, ',', '.'); ?></p>
+                    <p class="product-description"><?php echo htmlspecialchars($product['description']); ?></p>
+                    
+                    <!-- E-commerce Buttons -->
+                    <div class="ecommerce-buttons">
+                        <?php if(!empty($product['shopee_url'])): ?>
+                        <a href="<?php echo htmlspecialchars($product['shopee_url']); ?>" 
+                           target="_blank" 
+                           class="btn btn-shopee btn-ecom" title="Beli di Shopee">
+                           <i class="fas fa-shopping-cart"></i> Shopee
+                        </a>
+                        <?php endif; ?>
+                        
+                        <?php if(!empty($product['tokopedia_url'])): ?>
+                        <a href="<?php echo htmlspecialchars($product['tokopedia_url']); ?>" 
+                           target="_blank" 
+                           class="btn btn-tokped btn-ecom" title="Beli di Tokopedia">
+                           <i class="fas fa-store"></i> Tokopedia
+                        </a>
+                        <?php endif; ?>
+                        
+                        <?php if(!empty($product['tiktok_url'])): ?>
+                        <a href="<?php echo htmlspecialchars($product['tiktok_url']); ?>" 
+                           target="_blank" 
+                           class="btn btn-tiktok btn-ecom" title="Beli di TikTok Shop">
+                           <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                        <?php endif; ?>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>Tidak ada produk yang tersedia saat ini.</p>
+                </div>
+            </div>
+            <?php 
+                endforeach;
+            else: 
+            ?>
+                <p class="text-center w-100">Tidak ada produk yang tersedia saat ini.</p>
             <?php endif; ?>
         </div>
     </div>
@@ -56,9 +112,9 @@ $products = getAllProducts();
         <div class="about-content">
             <div class="about-text">
                 <h2>Tentang clair4UDIO</h2>
-                <p>Kami adalah toko spesialis perangkat audio yang berdedikasi untuk menyediakan perangkat audio berkualitas tinggi bagi para musisi, sound engineer, dan audiophile.</p>
+                <p>Kami adalah toko spesialis perangkat audio yang berdedikasi untuk menyediakan perangkat audio berkualitas.</p>
                 <p>Dengan pengalaman & pengetahuan tentang per-audio-an, kami memahami kebutuhan akan kualitas suara yang jernih, detail, dan akurat.</p>
-                <p>Semua produk kami melalui proses quality control yang ketat untuk memastikan kepuasan pelanggan.</p>
+                <p>Semua produk melalui proses quality control yang ketat untuk memastikan kepuasan pelanggan.</p>
             </div>
             
         </div>
@@ -75,7 +131,7 @@ $products = getAllProducts();
                 <ul class="contact-details">
                     <li>📧 info@clair4udio.com</li>
                     <li>📞 +62 812 3456 789</li>
-                    <li>📍 Jl. Audio No. 123, Jakarta</li>
+                    <li>📍 Jl. Audio No. 123, Bekasi</li>
                     <li>🕒 Senin - Jumat: 09:00 - 17:00</li>
                 </ul>
             </div>
@@ -97,5 +153,5 @@ $products = getAllProducts();
     </div>
 </section>
 
-
+<script src="js/script.js"></script>
 <?php include 'includes/footer.php'; ?>
