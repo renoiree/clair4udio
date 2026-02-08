@@ -12,8 +12,8 @@ $products = getAllProducts();
 <section class="hero" id="home">
     <div class="container">
         <h1>Tempat Perangkat Audio Terbaik</h1>
-        <p>Temukan Berbagai Macam Perangkat Audio Terbaik. 
-        <br>Orang Awam Hingga Audiophile Dapat Merasakan Kenikmatannya.</br></p>
+        <p>Temukan berbagai macam perangkat audio terbaik. 
+        <br>Orang awam hingga audiophile dapat merasakan kenikmatannya.</br></p>
         <a href="#products" class="btn">Lihat Produk</a>
     </div>
 </section>
@@ -21,7 +21,7 @@ $products = getAllProducts();
 <!-- Category Filter Section -->
 <section class="category-filter-section">
     <div class="container">
-        <h2 class="section-title text-center mb-4">Produk Audio Kami</h2>
+        <h2 class="section-title text-center mb-4">Katalog Produk</h2>
         <div class="category-filter text-center mb-5">
             <button class="btn btn-outline-dark mx-2 mb-2 cat-btn active" data-category="all">Semua Produk</button>
             <button class="btn btn-outline-dark mx-2 mb-2 cat-btn" data-category="IEM">IEM</button>
@@ -35,7 +35,7 @@ $products = getAllProducts();
 <!-- Products Section -->
 <section class="products" id="products">
     <div class="container">
-        <h2 class="section-title text-center">Katalog Produk</h2>
+        
         <div class="product-grid" id="product-container">
             <?php 
             if (!empty($products)):
